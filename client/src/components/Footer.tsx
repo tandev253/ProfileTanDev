@@ -4,7 +4,7 @@
  * Features: Social links, copyright, year auto-update
  */
 
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Facebook, Github, Linkedin, Mail } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -58,25 +58,32 @@ export default function Footer() {
             <h3 className="text-white font-semibold mb-4">Kết Nối</h3>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://github.com/tandev253"
                 className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gray-800 text-gray-300 hover:bg-amber-700 hover:text-white transition-colors"
                 aria-label="GitHub"
               >
                 <Github className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/tan-dev-96b863343"
                 className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gray-800 text-gray-300 hover:bg-amber-700 hover:text-white transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="mailto:your@email.com"
+                href="mailto:tandev253@gmail.com"
                 className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gray-800 text-gray-300 hover:bg-amber-700 hover:text-white transition-colors"
                 aria-label="Email"
               >
                 <Mail className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/tandev1m8"
+                className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gray-800 text-gray-300 hover:bg-amber-700 hover:text-white transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -86,13 +93,13 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
             <p>
-              &copy; {currentYear} Tan Dev. Tất cả quyền được bảo lưu.
+              &copy; {currentYear} Tan Dev
             </p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-amber-400 transition-colors">
+              <a href="https://github.com/tandev253" className="hover:text-amber-400 transition-colors">
                 Chính Sách Bảo Mật
               </a>
-              <a href="#" className="hover:text-amber-400 transition-colors">
+              <a href="https://github.com/tandev253" className="hover:text-amber-400 transition-colors">
                 Điều Khoản Sử Dụng
               </a>
             </div>

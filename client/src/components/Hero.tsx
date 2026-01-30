@@ -36,7 +36,7 @@ export default function Hero({ onContactClick }: HeroProps) {
           </div>
 
           <p className="text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
-            Với kinh nghiệm trong HTML, Node.js, ReactJS, React Native, Java, C#, Lua, Python, JavaScript, TypeScript, Next.js và CSS, tôi tạo ra các giải pháp công nghệ hiệu quả và đẹp mắt.
+            Với kinh nghiệm trong HTML, Node.js, ReactJS, React Native, Java, C#, Python, JavaScript, TypeScript, Next.js và CSS, tôi tạo ra các giải pháp công nghệ hiệu quả và đẹp mắt.
           </p>
 
           {/* CTA Button */}

@@ -4,22 +4,48 @@
  * Features: Email form, social media links, professional footer
  */
 
-import { Mail, Linkedin, Github, MessageSquare } from 'lucide-react';
+import { Mail, Linkedin, Github, Facebook } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Contact() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simple form handling - in production, this would send to a backend
-    if (email && message) {
+
+    if (!email || !message || loading) return;
+
+    try {
+      setLoading(true);
+
+      const res = await fetch('https://mail.tandev.id.vn/send-mail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          message,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Send mail failed');
+      }
+
       setSubmitted(true);
       setEmail('');
       setMessage('');
+
       setTimeout(() => setSubmitted(false), 3000);
+    } catch (error) {
+      console.error(error);
+      alert('Gửi tin nhắn thất bại, vui lòng thử lại!');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -42,7 +68,10 @@ export default function Contact() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-semibold text-gray-900 mb-2"
+              >
                 Email
               </label>
               <input
@@ -57,7 +86,10 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
+              <label
+                htmlFor="message"
+                className="block text-sm font-semibold text-gray-900 mb-2"
+              >
                 Tin Nhắn
               </label>
               <textarea
@@ -68,14 +100,15 @@ export default function Contact() {
                 rows={5}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-amber-700 focus:bg-white transition-colors resize-none"
                 required
-              ></textarea>
+              />
             </div>
 
             <button
               type="submit"
-              className="w-full px-6 py-3 bg-amber-700 text-white font-semibold rounded-lg hover:bg-amber-800 transition-colors duration-200"
+              disabled={loading}
+              className="w-full px-6 py-3 bg-amber-700 text-white font-semibold rounded-lg hover:bg-amber-800 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Gửi Tin Nhắn
+              {loading ? 'Đang gửi...' : 'Gửi Tin Nhắn'}
             </button>
 
             {submitted && (
@@ -96,8 +129,11 @@ export default function Contact() {
                   <Mail className="w-6 h-6 text-amber-700 flex-shrink-0 mt-1" />
                   <div>
                     <p className="font-semibold text-gray-900">Email</p>
-                    <a href="mailto:your@email.com" className="text-gray-600 hover:text-emerald-600 transition-colors">
-                      your@email.com
+                    <a
+                      href="mailto:tandev253@gmail.com"
+                      className="text-gray-600 hover:text-emerald-600 transition-colors"
+                    >
+                      tandev253@gmail.com
                     </a>
                   </div>
                 </div>
@@ -110,25 +146,25 @@ export default function Contact() {
               </h3>
               <div className="flex gap-4">
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/tan-dev-96b863343"
                   className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gray-100 text-gray-600 hover:bg-amber-700 hover:text-white transition-colors"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-6 h-6" />
                 </a>
                 <a
-                  href="#"
+                  href="https://github.com/tandev253"
                   className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gray-100 text-gray-600 hover:bg-amber-700 hover:text-white transition-colors"
                   aria-label="GitHub"
                 >
                   <Github className="w-6 h-6" />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.facebook.com/tandev1m8"
                   className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gray-100 text-gray-600 hover:bg-amber-700 hover:text-white transition-colors"
-                  aria-label="Message"
+                  aria-label="Facebook"
                 >
-                  <MessageSquare className="w-6 h-6" />
+                  <Facebook className="w-6 h-6" />
                 </a>
               </div>
             </div>

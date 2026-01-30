@@ -24,7 +24,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     category: 'Other',
-    skills: ['Lua', 'Git', 'REST API', 'Responsive Design'],
+    skills: ['Git', 'REST API', 'Responsive Design'],
   },
 ];
 
